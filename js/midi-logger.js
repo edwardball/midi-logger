@@ -25,10 +25,6 @@ var MidiLogger = function(){
 
 	this.init = function() {
 
-		// patch up prefixes
-		window.AudioContext = window.AudioContext||window.webkitAudioContext;
-
-		this.context = new AudioContext();
 		if (navigator.requestMIDIAccess){
 			navigator.requestMIDIAccess().then(
 				_this.onMIDIInit,
