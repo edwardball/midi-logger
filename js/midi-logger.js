@@ -30,8 +30,6 @@ var MidiLogger = function(){
 				_this.onMIDIInit,
 				_this.onMIDIReject
 			);
-		} else {
-			$("#badtime").style("visibility", "visible");
 		}
 
 		$(".js-column-toggle").change(function(e){
@@ -51,14 +49,18 @@ var MidiLogger = function(){
 		var haveAtLeastOneDevice = false;
 	    var inputs = _this.midiAccess.inputs.values();
 	    for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+		    console.log(input);
 	    	input.value.onmidimessage = _this.onMIDIMessage;
 	    	haveAtLeastOneDevice = true;
 	    }
-	    var badtime = document.getElementById("badtime");
 
-	    if (badtime){
-	    	badtime.style.visibility = haveAtLeastOneDevice ? "hidden" : "visible";
+
+	    if (!haveAtLeastOneDevice){
+	    	$("#js-warning").html("We weren't able to detect any MIDI devices. Please make sure at least one is connected or try restarting your browser.");
+	    } else {
+	    	$("#js-warning").html("");
 	    }
+
 	}
 
 	this.onMIDIInit = function(midi) {
@@ -68,7 +70,7 @@ var MidiLogger = function(){
 	}
 
 	this.onMIDIReject = function(err) {
-		alert("The MIDI system failed to start.  You're gonna have a bad time :(");
+		$("#js-warning").html("Sadly your browser doesn't support MIDI. Please try again with the latest version of Chrome.");
 	}
 
 	this.onMIDIMessage = function( event ) {

@@ -3,6 +3,10 @@ body {
 	font-family:Karla, sans-serif;
 }
 
+.warning {
+	color:#F60;
+}
+
 h2 {
 	font-size: 14px;
 	margin-bottom: 5px;
