@@ -1,0 +1,108 @@
+@import url(http://fonts.googleapis.com/css?family=Karla:400,700);
+body {
+	font-family:Karla, sans-serif;
+}
+
+h2 {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th, td{
+	border:1px solid #ccc;
+	padding:10px;
+	text-align:center;
+	background:#f8f8f8;
+}
+
+.midi-logger-page label {
+	font-size: 13px;
+}
+
+.midi-log-table {
+	border-collapse:collapse;
+	border-spacing:0;
+	width:100%;
+}
+
+.midi-log-table td {
+	text-align:left;
+	font-family:menlo, monospace;
+	font-size:14px;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	word-break:normal;
+	background:#fff;
+}
+.midi-log-table th {
+	text-align:left;
+	font-family: menlo, monospace;
+	font-size:14px;
+	font-weight:normal;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	word-break:normal;
+	background:#f8f8f8;
+}
+
+.midi-logger-page .page-wrapper{
+	max-width: 90%;
+	margin: 0 auto;
+	width:1000px;
+	padding: 5% 0 3%;
+}
+
+.midi-logger-page h1 {
+	text-align: center;
+}
+
+
+.hide-time-column .time-column,
+.hide-channel-column .channel-column,
+.hide-channel-message-column .channel-message-column,
+.hide-channel-message-desc-column .channel-message-desc-column,
+.hide-data-byte-1-column .data-byte-1-column,
+.hide-data-byte-2-column .data-byte-2-column,
+.hide-manufacturer-column .manufacturer-column,
+.hide-model-column .model-column{
+	display: none;
+}
+
+.column-visibility-toggles {
+	margin-bottom: 1em;
+}
+
+.column-visibility-toggles p,
+.number-format-choosers p {
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+.column-visibility-toggles,
+.number-format-choosers {
+	padding:5px 0px 5px 18px;
+	background:#f8f8f8;
+}
+
+.column-visibility-toggles label,
+.number-format-choosers label {
+    padding: 10px 18px 10px 0;
+    display: inline-block;
+}
+
+.midi-logger-page ul {
+	max-width:600px;
+}
+
+.midi-logger-page .intro {
+	margin-bottom: 2em;
+}

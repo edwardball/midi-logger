@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+	<title>Midi Signal Logger</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	
+</head>
+<body class='midi-logger-page'>
+	<a href="https://github.com/edwardball/midi-logger"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+	<div class="page-wrapper">
+		<div class="intro">
+			<h1>Midi Logger</h1>
+
+			<p>
+				This Midi Logger will print any midi input to your browser to the table below, with new signals appearing at the top. This is all possible because of the Web Midi API.
+			</p>
+
+			<p>
+				Please note
+				<ul>
+					<li>
+						Midi channel messages are zero indexed, but controllers often label channels starting from 1. This means that if your controller has channels labelled 1 to 16, data it sends will be from 0 - 15.
+					</li>
+					<li>
+						If you connect a new Midi device, you may need to restart your browser for it to be detected.
+					</li>
+				</ul>
+			</p>
+
+			<p id="badtime" style="visibility:hidden;color:#F60;">
+				Sadly your browser doesn't support MIDI. Please try again with the latest version of Chrome.
+			</p>
+
+			<form id='js-midi-logger-settings'>
+				<div class='column-visibility-toggles-wrapper'>
+					<h2>Show/hide columns</h2>
+					<div class='column-visibility-toggles'>
+						<label for="show-time">
+							<input type="checkbox" id='show-time' name='show-time' data-class-to-toggle='hide-time-column' class='js-column-toggle' checked> Time
+						</label>
+						<label for="show-channel">
+							<input type="checkbox" id='show-channel' name='show-channel' data-class-to-toggle='hide-channel-column' class='js-column-toggle' checked> Channel
+						</label>
+						<label for="show-channel-message">
+							<input type="checkbox" id='show-channel-message' name='show-channel-message' data-class-to-toggle='hide-channel-message-column' class='js-column-toggle' checked> Channel Message
+						</label>
+						<label for="show-channel-message-desc">
+							<input type="checkbox" id='show-channel-message-desc' name='show-channel-message-desc' data-class-to-toggle='hide-channel-message-desc-column' class='js-column-toggle' checked> Channel message description
+						</label>
+						<label for="show-data-byte-1">
+							<input type="checkbox" id='show-data-byte-1' name='show-data-byte-1' data-class-to-toggle='hide-data-byte-1-column' class='js-column-toggle' checked> Data byte 1
+						</label>
+						<label for="show-data-byte-2">
+							<input type="checkbox" id='show-data-byte-2' name='show-data-byte-2' data-class-to-toggle='hide-data-byte-2-column' class='js-column-toggle' checked> Data byte 2
+						</label>
+						<label for="show-manufacturer">
+							<input type="checkbox" id='show-manufacturer' name='show-manufacturer' data-class-to-toggle='hide-manufacturer-column' class='js-column-toggle' checked> Manufacturer
+						</label>
+						<label for="show-model">
+							<input type="checkbox" id='show-model' name='show-model' data-class-to-toggle='hide-model-column' class='js-column-toggle' checked> Model
+						</label>
+					</div>
+				</div>
+
+				<div class='number-format-choosers-wrapper'>
+
+					<h2>Other settings</h2>
+
+					<div class="number-format-choosers">
+						<label for="channel-message-format">Channel message format
+							<select name="channel-message-format" id="channel-message-format">
+								<option value="bin">Binary</option>
+								<option value="dec">Decimal</option>
+								<option value="hex" selected>Hexadecimal</option>
+							</select>
+						</label>
+
+						<label for="data-byte-format">Data bytes format
+						<select name="data-byte-format" id="data-byte-format">
+							<option value="bin">Binary</option>
+							<option value="dec" selected>Decimal</option>
+							<option value="hex">Hexadecimal</option>
+						</select>
+						</label>
+
+						<label for="show-note-name">
+							<input type="checkbox" id='show-note-name' name='show-note-name'> Show note name for note on/off events
+						</label>
+
+						<label for="">
+							Max number of rows
+							<select name="row-count" id="row-count-switcher">
+								<option value="10">10</option>
+								<option value="100" selected>100</option>
+								<option value="1000">1000</option>
+							</select>
+						</label>
+					</div>
+				</div>
+			</form>
+		</div>
+	
+
+		<table class="js-midi-log-table midi-log-table">
+			<tr class="js-table-head-row">
+				<th class="time-column">Time</th>
+				<th class="channel-column">Channel</th>
+				<th class="channel-message-column">Channel message</th>
+				<th class="channel-message-desc-column">Channel message desc</th>
+				<th class="data-byte-1-column">Data byte 1</th>
+				<th class="data-byte-2-column">Data byte 2</th>
+				<th class="manufacturer-column">Manufacturer</th>
+				<th class="model-column">Model</th>
+			</tr>
+		</table>
+
+	</div>
+
+    <script src='js/WebMIDIAPI.js'></script>
+	<script src='js/midi-utils.js'></script>
+	<script src='js/midi-logger.js'></script>
+	<script src='js/main.js'></script>
+</body>
+</html>
